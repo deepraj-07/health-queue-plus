@@ -1,7 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
-import { env } from './env';
+import { env, hasSupabaseEnv } from './env';
+import logger from './logger';
 
-export const supabase = createClient(env.VITE_SUPABASE_URL, env.VITE_SUPABASE_ANON_KEY);
+const supabaseUrl = env.VITE_SUPABASE_URL || 'https://example.supabase.co';
+const supabaseAnonKey = env.VITE_SUPABASE_ANON_KEY || 'public-anon-key-placeholder';
+
+if (!hasSupabaseEnv) {
+  logger.warn('Supabase environment variables are missing. Network requests will fail until they are configured.');
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Database types matching our schema
 export interface DbPatient {
