@@ -1,4 +1,0 @@
-Project: HealthQueue+
-Date: 2026-04-16T20:20:37.615Z
-Coverage: 0.00% (0/9222)
-Total files in src/: 86
